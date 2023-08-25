@@ -14,13 +14,16 @@ const Player = () => {
   }, [set_player_ref]);
 
   return (
-    <div>
+    <div id="player-container">
       <Cover />
-      <audio
-        src={playList[currently_playing_idx].src}
-        controls
-        ref={audioRef}
-      />
+      <div id="controls-container">
+        <audio
+          id="controls"
+          src={playList[currently_playing_idx].src}
+          controls
+          ref={audioRef}
+        />
+      </div>
     </div>
   );
 };

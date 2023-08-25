@@ -7,33 +7,76 @@
   min-height: 100vh;
 }
 
-#cover {
-  border-radius: 100%;
-  border: 5px solid;
-  animation-name: rotate;
-  animation-duration: 10s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-}
+#player-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
+  #cover-container {
+    overflow: hidden;
+    padding: 25px;
+  
+    #cover {
+      border-radius: 100%;
+      width: 100%;
+      box-sizing: border-box;
+      border: 5px solid;
+      animation-name: rotate;
+      animation-duration: 10s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      box-shadow: 0 0 20px #48526B;
+    
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+      
+        25% {
+          transform: rotate(90deg);
+        }
+      
+        50% {
+          transform: rotate(180deg);
+        }
+      
+        75% {
+          transform: rotate(270deg);
+        }
+      
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    }
   }
-
-  25% {
-    transform: rotate(90deg);
-  }
-
-  50% {
-    transform: rotate(180deg);
-  }
-
-  75% {
-    transform: rotate(270deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
+  
+  #controls-container {
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    @media (min-width: 560px) {
+      width: 500px;
+    }
+  
+    @media (min-width: 680px) {
+      width: 650px;
+    }
+  
+    @media (min-width: 880px) {
+      width: 850px;
+    }
+  
+    @media (min-width: 1250px) {
+      width: 1200px;
+    }
+  
+    #controls {
+      width: 100%;
+      outline: none;
+    }
   }
 }
