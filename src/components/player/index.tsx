@@ -5,9 +5,18 @@ import useMusic from '../../store/useMusic';
 import Control from './Control';
 import Cover from './Cover';
 import Progress from './Progress';
+import Title from './Title';
 
 const Player = () => {
-  const { set_player_ref, playList, currently_playing_idx } = useMusic();
+  const {
+    set_player_ref,
+    playList,
+    currently_playing_idx,
+    isPlaying,
+    setIsPlaying,
+    spent,
+    setSpent,
+  } = useMusic();
 
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -20,11 +29,29 @@ const Player = () => {
     return ((event.clientX - target.offsetLeft) * 100) / target.offsetWidth;
   };
 
+  const playHandle = (mode: 'play' | 'pause'): void => {
+    if (mode === 'play') {
+      setIsPlaying(true);
+      audioRef?.current?.play();
+    } else {
+      setIsPlaying(false);
+      audioRef?.current?.pause();
+    }
+  };
+
   return (
     <div id="player-container">
       <Cover />
-      <Progress calcPercentage={calcPercentage} />
-      <Control isPlaying={false} />
+      <Title
+        singer={playList[currently_playing_idx].singer}
+        title={playList[currently_playing_idx].title}
+      />
+      <Progress
+        calcPercentage={calcPercentage}
+        spent={spent}
+        setSpent={setSpent}
+      />
+      <Control isPlaying={isPlaying} playHandle={playHandle} />
       <audio
         src={playList[currently_playing_idx].src}
         controls
