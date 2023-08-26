@@ -16,8 +16,12 @@ interface State {
   playerRef: React.RefObject<HTMLAudioElement> | null;
   playList: MusicType[];
   currently_playing_idx: number;
+  isPlaying: boolean;
+  spent: number;
   set_player_ref: (ref: React.RefObject<HTMLAudioElement>) => void;
   set_currently_playing: (idx: number) => void;
+  setIsPlaying: (value: boolean) => void;
+  setSpent: (value: number) => void;
   play_next: () => void;
   play_prev: () => void;
 }
@@ -35,8 +39,12 @@ const useMusic = create<State>((set) => ({
     },
   ],
   currently_playing_idx: 0,
+  isPlaying: false,
+  spent: 0,
   set_player_ref: (ref) => set(() => ({ playerRef: ref })),
   set_currently_playing: (idx) => set(() => ({ currently_playing_idx: idx })),
+  setIsPlaying: (value) => set(() => ({ isPlaying: value })),
+  setSpent: (value) => set(() => ({ spent: value })),
   play_next: () =>
     set((state) => ({
       currently_playing_idx: state.currently_playing_idx + 1,
