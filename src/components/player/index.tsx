@@ -1,4 +1,5 @@
-import { useEffect, useRef } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect, useRef, useState } from 'react';
 
 import useMusic from '../../store/useMusic';
 
@@ -14,20 +15,22 @@ const Player = () => {
     currently_playing_idx,
     isPlaying,
     setIsPlaying,
-    spent,
-    setSpent,
+    play_next,
   } = useMusic();
 
   const audioRef = useRef<HTMLAudioElement>(null);
 
+  const [times, setTimes] = useState<{
+    current: number;
+    duration: number;
+  }>({
+    current: 0,
+    duration: 0,
+  });
+
   useEffect(() => {
     set_player_ref(audioRef);
   }, [set_player_ref]);
-
-  const calcPercentage = (event: React.MouseEvent<HTMLDivElement>): number => {
-    const target = event.currentTarget as HTMLDivElement;
-    return ((event.clientX - target.offsetLeft) * 100) / target.offsetWidth;
-  };
 
   const playHandle = (mode: 'play' | 'pause'): void => {
     if (mode === 'play') {
@@ -39,6 +42,22 @@ const Player = () => {
     }
   };
 
+  const updateTimeHandle = (e: any): void => {
+    const current = e.target.currentTime;
+    const duration = e.target.duration;
+
+    setTimes({ current, duration });
+  };
+
+  const progressChangeHandle = (e: any) => {
+    audioRef.current!.currentTime = e.target.value;
+    setTimes({ ...times, current: e.target.value });
+  };
+
+  const endHandle = (): void => {
+    play_next();
+  };
+
   return (
     <div id="player-container">
       <Cover />
@@ -47,15 +66,17 @@ const Player = () => {
         title={playList[currently_playing_idx].title}
       />
       <Progress
-        calcPercentage={calcPercentage}
-        spent={spent}
-        setSpent={setSpent}
+        spent={times.current}
+        max={times.duration}
+        spentChangeHandle={progressChangeHandle}
       />
       <Control isPlaying={isPlaying} playHandle={playHandle} />
       <audio
         src={playList[currently_playing_idx].src}
         controls
         ref={audioRef}
+        onTimeUpdate={updateTimeHandle}
+        onEnded={endHandle}
       />
     </div>
   );
