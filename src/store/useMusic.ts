@@ -47,11 +47,17 @@ const useMusic = create<State>((set) => ({
   setSpent: (value) => set(() => ({ spent: value })),
   play_next: () =>
     set((state) => ({
-      currently_playing_idx: state.currently_playing_idx + 1,
+      currently_playing_idx:
+        state.currently_playing_idx + 1 > state.playList.length
+          ? 0
+          : state.currently_playing_idx + 1,
     })),
   play_prev: () =>
     set((state) => ({
-      currently_playing_idx: state.currently_playing_idx - 1,
+      currently_playing_idx:
+        state.currently_playing_idx - 1 > state.playList.length
+          ? 0
+          : state.currently_playing_idx - 1,
     })),
 }));
 
