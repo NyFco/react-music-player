@@ -14,7 +14,7 @@ const Progress = ({ spent, spentChangeHandle, max }: Props) => {
 
   return (
     <div id="progress-container">
-      <h2>{timeCalc(spent)}</h2>
+      <h2 className="time">{timeCalc(spent)}</h2>
       <input
         id="progress"
         type="range"
@@ -23,7 +23,7 @@ const Progress = ({ spent, spentChangeHandle, max }: Props) => {
         value={spent}
         onChange={spentChangeHandle}
       />
-      <h2>{timeCalc(max)}</h2>
+      <h2 className="time">{timeCalc(max)}</h2>
     </div>
   );
 };
