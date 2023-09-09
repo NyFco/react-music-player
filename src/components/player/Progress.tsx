@@ -9,7 +9,7 @@ const Progress = ({ spent, spentChangeHandle, max }: Props) => {
   const timeCalc = (seconds: number): string => {
     const min = Math.floor(seconds / 60);
     const sec = Math.floor(seconds - min * 60);
-    return `${min}:${sec < 10 ? '0' : ''}${sec}`;
+    return `${min || 0}:${(sec || 0) < 10 ? '0' : ''}${sec || 0}`;
   };
 
   return (
