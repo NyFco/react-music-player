@@ -1,7 +1,11 @@
 import { create } from 'zustand';
 
+import booyah from '../assets/tracks/booyah/booyah.mp3';
+import booyahCover from '../assets/tracks/booyah/cover.jpg';
 import safeInYourArmsCover from '../assets/tracks/safe in your arms/cover.jpg';
 import safeInYourArms from '../assets/tracks/safe in your arms/Safe In your arms.mp3';
+import vibeWithMeCover from '../assets/tracks/vibe with me/cover.jpg';
+import vibeWithMe from '../assets/tracks/vibe with me/Vibe With Me.mp3';
 
 interface MusicType {
   src: string;
@@ -36,6 +40,22 @@ const useMusic = create<State>((set) => ({
       cover: safeInYourArmsCover,
       primary_color: '#A7BF81',
       second_color: '#48526B',
+    },
+    {
+      src: booyah,
+      title: 'Booyah',
+      singer: 'Showtek',
+      cover: booyahCover,
+      primary_color: '#F54E3D',
+      second_color: '#C45206',
+    },
+    {
+      src: vibeWithMe,
+      title: 'Vibe With Me',
+      singer: 'Joakim Karud',
+      cover: vibeWithMeCover,
+      primary_color: '#FAF3E0',
+      second_color: '#08080A',
     },
   ],
   currently_playing_idx: 0,
