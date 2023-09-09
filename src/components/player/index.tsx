@@ -16,6 +16,7 @@ const Player = () => {
     isPlaying,
     setIsPlaying,
     play_next,
+    play_prev,
   } = useMusic();
 
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -56,6 +57,17 @@ const Player = () => {
 
   const endHandle = (): void => {
     play_next();
+    playHandle('play');
+  };
+
+  const nextHandle = (): void => {
+    play_next();
+    playHandle('play');
+  };
+
+  const prevHandle = (): void => {
+    play_prev();
+    playHandle('play');
   };
 
   return (
@@ -70,7 +82,12 @@ const Player = () => {
         max={times.duration}
         spentChangeHandle={progressChangeHandle}
       />
-      <Control isPlaying={isPlaying} playHandle={playHandle} />
+      <Control
+        isPlaying={isPlaying}
+        playHandle={playHandle}
+        nextHandle={nextHandle}
+        prevHandle={prevHandle}
+      />
       <audio
         src={playList[currently_playing_idx].src}
         controls

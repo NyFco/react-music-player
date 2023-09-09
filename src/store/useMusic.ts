@@ -68,15 +68,15 @@ const useMusic = create<State>((set) => ({
   play_next: () =>
     set((state) => ({
       currently_playing_idx:
-        state.currently_playing_idx + 1 > state.playList.length
+        state.currently_playing_idx === state.playList.length - 1
           ? 0
           : state.currently_playing_idx + 1,
     })),
   play_prev: () =>
     set((state) => ({
       currently_playing_idx:
-        state.currently_playing_idx - 1 > state.playList.length
-          ? 0
+        state.currently_playing_idx === 0
+          ? state.playList.length - 1
           : state.currently_playing_idx - 1,
     })),
 }));
