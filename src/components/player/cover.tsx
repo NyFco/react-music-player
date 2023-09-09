@@ -7,7 +7,10 @@ const Cover = () => {
     <div id="cover-container">
       <img
         id="cover"
-        style={{ borderColor: playList[currently_playing_idx].second_color }}
+        style={{
+          borderColor: playList[currently_playing_idx].second_color,
+          boxShadow: `0 0 20px ${playList[currently_playing_idx].second_color}`,
+        }}
         src={playList[currently_playing_idx].cover}
       />
     </div>

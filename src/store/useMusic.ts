@@ -47,7 +47,7 @@ const useMusic = create<State>((set) => ({
       singer: 'Showtek',
       cover: booyahCover,
       primary_color: '#F54E3D',
-      second_color: '#C45206',
+      second_color: '#5D2A00',
     },
     {
       src: vibeWithMe,
