@@ -57,17 +57,17 @@ const Player = () => {
 
   const endHandle = (): void => {
     play_next();
-    playHandle('play');
+    playHandle('pause');
   };
 
   const nextHandle = (): void => {
     play_next();
-    playHandle('play');
+    playHandle('pause');
   };
 
   const prevHandle = (): void => {
     play_prev();
-    playHandle('play');
+    playHandle('pause');
   };
 
   return (
