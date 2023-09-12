@@ -100,3 +100,57 @@
     display: none;
   }
 }
+
+#menu-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  #menu {
+    background-color: #eee;
+    width: 40%;
+    height: 100%;
+    overflow: auto;
+    animation-name: openMenu;
+    animation-duration: 0.3s;
+    animation-timing-function: linear;
+
+    @keyframes openMenu {
+      0% {
+        transform: translate(-100%, 0);
+      }
+
+      100% {
+        transform: translate(0, 0);
+      }
+    }
+
+    .music-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      &-cover {
+        border-radius: 100%;
+        width: 100px;
+      }
+    }
+
+  }
+
+  #rest {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+#open-menu-btn {
+  position: fixed;
+  top: 15px;
+  left: 25px;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}

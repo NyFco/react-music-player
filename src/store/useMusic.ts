@@ -7,7 +7,8 @@ import safeInYourArms from '../assets/tracks/safe in your arms/Safe In your arms
 import vibeWithMeCover from '../assets/tracks/vibe with me/cover.jpg';
 import vibeWithMe from '../assets/tracks/vibe with me/Vibe With Me.mp3';
 
-interface MusicType {
+export interface MusicType {
+  id: number;
   src: string;
   title: string;
   singer: string;
@@ -34,6 +35,7 @@ const useMusic = create<State>((set) => ({
   playerRef: null,
   playList: [
     {
+      id: 0,
       src: safeInYourArms,
       title: 'Safe In Your Arms',
       singer: 'Markvard',
@@ -42,6 +44,7 @@ const useMusic = create<State>((set) => ({
       second_color: '#48526B',
     },
     {
+      id: 1,
       src: booyah,
       title: 'Booyah',
       singer: 'Showtek',
@@ -50,6 +53,7 @@ const useMusic = create<State>((set) => ({
       second_color: '#5D2A00',
     },
     {
+      id: 2,
       src: vibeWithMe,
       title: 'Vibe With Me',
       singer: 'Joakim Karud',
